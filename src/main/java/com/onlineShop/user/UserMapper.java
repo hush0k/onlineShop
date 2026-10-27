@@ -3,16 +3,20 @@ package com.onlineShop.user;
 import com.onlineShop.user.dto.request.UserCreateDto;
 import com.onlineShop.user.dto.request.UserUpdateDto;
 import com.onlineShop.user.dto.response.UserResponseDto;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import com.onlineShop.user.dto.response.UsersListResponseDto;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
     User toUser(UserCreateDto createDto);
     UserResponseDto toUserResponse(User user);
+
+    @Mapping(target = "users", source = "users")
+    @Mapping(target = "total", source = "source")
+    UsersListResponseDto toUsersListResponseDto(List<User> users, int total);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateUserFromDto(UserUpdateDto dto, @MappingTarget User user);
