@@ -38,6 +38,10 @@ public class UserService {
         return userMapper.toUserResponse(user);
     }
 
+//    public UserResponseDto updatePassword(Long userId) {
+//        return ;
+//    }
+
     public void deleteUser(Long userId) {
         User user = findUser(userId);
         userRepository.delete(user);
