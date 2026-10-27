@@ -57,9 +57,6 @@ public class User {
 
     @PrePersist
     public void prePersist(){
-        if (nickname != null) {
-            nickname = nickname.strip().toLowerCase(Locale.ROOT);
-        }
 
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
