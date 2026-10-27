@@ -1,0 +1,119 @@
+@startuml
+
+class User {
+    -id: BIGINT
+    --
+    -nickname: STRING
+    -first_name: STRING
+    -last_name: STRING
+    -date_of_birth: DATE
+    -role: UserRole
+    -phone_number: STRING
+    -hashed_password: STRING
+    -created_at: DATE
+    -updated_at: DATE
+}
+
+class Product {
+    -product_id: UUID
+    --
+    -name: STRING
+    -description: STRING
+    -price: NUMERIC(12, 2)
+    -weight: INT
+    -weight_type: WeightType
+}
+
+class Category {
+    -category_id: UUID
+    --
+    -product_ids: List<product_id>
+    -name: STRING
+}
+
+class Order {
+    -order_id: BIGINT
+    --
+    -user_id: BIGINT
+    -product_ids: Map<product_id, count>
+    -created_at: DATE
+    -predicted_date_of_delivery: DATE
+    -status: OrderStatus
+    -subPrice: NUMERIC(12, 2)
+    -delivery_price: NUMERIC(12, 2)
+    -discount: NUMERIC(12, 2)
+    -total_price: NUMERIC(12, 2)
+    -currency: Currency
+    -delivery_city: STRING
+    -delivery_address: STRING
+}
+
+class OrderHistory {
+    -id: BIGINT
+    --
+    -order_id: BIGINT
+    -status: OrderStatus
+    -timestamp: DATE
+
+}
+
+class PromoCode {
+    -promoCode: STRING
+    --
+    -discount: INT [1:100]
+}
+
+class UsedPromoCodes {
+    -id: BIGINT
+    --
+    -user_id: BIGINT
+    -promo_code_id: STRING
+    -created_at: DATE
+}
+
+package Enums {
+    enum UserRole {
+        ADMIN,
+        USER
+    }
+
+    enum WeightType {
+        MILLIGRAM,
+        GRAM,
+        KILOGRAM,
+        TONNE
+    }
+
+    enum OrderStatus {
+        CREATED,
+        PENDING_PAYMENT,
+        PAID,
+        PROCESSING,
+        SHIPPED,
+        IN_TRANSIT,
+        READY_FOR_PICKUP,
+        DELIVERED,
+        CANCELLED,
+        RETURNED
+    }
+
+    enum Currency {
+        KZT,
+        USD,
+        RUB,
+        CNY
+    }
+}
+
+
+
+Category ||--o{ Product
+    User ||--o{ Order
+Product ||--o{ Order
+Order ||--o{ OrderHistory
+PromoCode ||--o{ UsedPromoCodes
+PromoCode ||--o{ Order
+User ||--o{ UsedPromoCodes
+
+
+@enduml
