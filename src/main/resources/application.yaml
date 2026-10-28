@@ -21,3 +21,8 @@ spring:
 
   flyway:
     enabled: true
+
+  security:
+    user:
+      name: admin
+      password: admin
