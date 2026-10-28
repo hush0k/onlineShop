@@ -15,7 +15,7 @@ public interface UserMapper {
     UserResponseDto toUserResponse(User user);
 
     @Mapping(target = "users", source = "users")
-    @Mapping(target = "total", source = "source")
+    @Mapping(target = "total", source = "total")
     UsersListResponseDto toUsersListResponseDto(List<User> users, int total);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
