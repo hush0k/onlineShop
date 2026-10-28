@@ -1,12 +1,14 @@
 package com.onlineShop.user.dto.request;
 
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 
 import java.time.LocalDate;
 
+@Builder
 public record UserCreateDto(
 
-        @NotBlank(message = "Nickname can not be empty!")
+        @NotBlank(message = "Email can not be empty!")
         @Email
         @Size(min=3, max=100)
         String email,
@@ -26,22 +28,6 @@ public record UserCreateDto(
         )
         String phoneNumber,
 
-        @NotBlank(message = "Password field can not be empty")
-        @Pattern(
-                regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,72}$",
-                message = "Your password must contain English letters and digits. Size should not be less than 8 " +
-                        "characters"
-        )
-        String password,
-
-        @NotBlank(message = "Password field can not be empty")
-        String confirmPassword
-) {
-    @AssertTrue(message = "Passwords do not match")
-    public boolean isPasswordConfirmed() {
-        if (password == null || confirmPassword == null) {
-            return true;
-        }
-        return password.equals(confirmPassword);
-    }
-}
+        @NotBlank(message = "Hashed password field can not be empty")
+        String hashedPassword
+) {}

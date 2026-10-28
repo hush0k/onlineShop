@@ -57,4 +57,8 @@ public class UserService {
         List<User> users = userRepository.findAll();
         return userMapper.toUsersListResponseDto(users, users.size());
     }
+
+    public boolean isEmailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }
