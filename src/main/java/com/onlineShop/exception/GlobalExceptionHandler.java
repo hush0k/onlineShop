@@ -1,5 +1,6 @@
 package com.onlineShop.exception;
 
+import com.onlineShop.exception.auth.HandleUserAlreadyExists;
 import com.onlineShop.exception.user.HandleUserNotFound;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,20 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleUsersAlreadyExists(HandleUserAlreadyExists excption,
+                                                                  HttpServletRequest request){
+        ErrorResponse error = ErrorResponse.builder()
+                .timestamp(Instant.now())
+                .status(409)
+                .error("Conflict")
+                .message(excption.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
 }
