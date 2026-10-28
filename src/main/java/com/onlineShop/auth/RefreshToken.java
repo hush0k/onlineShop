@@ -1,5 +1,6 @@
 package com.onlineShop.auth;
 
+import com.onlineShop.common.config.JwtProperties;
 import com.onlineShop.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,6 +15,7 @@ import java.time.Instant;
 @Setter
 @Getter
 @Builder
+@RequiredArgsConstructor
 public class RefreshToken {
 
     @Id
