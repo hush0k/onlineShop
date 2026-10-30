@@ -41,6 +41,10 @@ public class Product {
     @Builder.Default
     private WeightType weightType = WeightType.GRAM;
 
+    @Column(name = "stock_quantity", nullable = false)
+    @Builder.Default
+    private Integer stockQuantity = 0;
+
     @Column(name="created_at")
     private Instant createdAt;
 

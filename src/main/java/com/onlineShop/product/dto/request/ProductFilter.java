@@ -6,5 +6,7 @@ import java.util.UUID;
 public record ProductFilter(
         UUID categoryId,
         BigDecimal minPrice,
-        BigDecimal maxPrice
+        BigDecimal maxPrice,
+        Integer minStockQuantity,
+        Integer maxStockQuantity
 ) {}

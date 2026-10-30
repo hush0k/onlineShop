@@ -4,6 +4,7 @@ import com.onlineShop.product.WeightType;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public record ProductUpdateDto(
 
@@ -12,6 +13,11 @@ public record ProductUpdateDto(
 
         @Size(max=1000, message = "Size of description should be less than 1000 symbols")
         String description,
+
+        UUID categoryId,
+
+        @Positive(message = "Price should be more than 0")
+        Integer stockQuantity,
 
         @Positive(message = "Price should be more than 0")
         @Digits(integer=10, fraction=2, message = "Price should have up to 10 integer digits and 2 fraction digits")

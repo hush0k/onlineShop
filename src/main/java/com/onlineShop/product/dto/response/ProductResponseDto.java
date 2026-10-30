@@ -11,6 +11,7 @@ public record ProductResponseDto(
         String name ,
         String description,
         String categoryName,
+        Integer stockQuantity,
         BigDecimal price,
         BigDecimal weight,
         WeightType weightType,

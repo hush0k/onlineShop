@@ -1,5 +1,6 @@
 package com.onlineShop.product;
 
+import com.onlineShop.exception.product.HandleNotEnoughProductQuantity;
 import com.onlineShop.exception.product.HandleProductNotFound;
 import com.onlineShop.product.dto.request.ProductCreateDto;
 import com.onlineShop.product.dto.request.ProductFilter;
@@ -33,7 +34,9 @@ public class ProductService {
         Specification<Product> spec = Specification.allOf(
                 ProductSpecifications.hasCategory(filter.categoryId()),
                 ProductSpecifications.priceGte(filter.minPrice()),
-                ProductSpecifications.priceLte(filter.maxPrice())
+                ProductSpecifications.priceLte(filter.maxPrice()),
+                ProductSpecifications.stockQuantityGte(filter.minStockQuantity()),
+                ProductSpecifications.stockQuantityLte(filter.maxStockQuantity())
         );
         Page<Product> products = productRepository.findAllWithCategory(spec, pageable);
         return products.map(productMapper::toProductResponseDto);
@@ -60,6 +63,15 @@ public class ProductService {
     public void deleteProduct(UUID productId) {
         productIsExists(productId);
         productRepository.deleteById(productId);
+    }
+
+    @Transactional
+    public void buyProduct(UUID productId, int quantity) {
+        productIsExists(productId);
+        int updated = productRepository.decreaseStock(productId, quantity);
+        if (updated == 0) {
+            throw new HandleNotEnoughProductQuantity(productId, quantity);
+        }
     }
 
 }

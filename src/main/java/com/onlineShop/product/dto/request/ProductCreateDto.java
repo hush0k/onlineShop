@@ -4,6 +4,7 @@ import com.onlineShop.product.WeightType;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public record ProductCreateDto(
 
@@ -13,6 +14,12 @@ public record ProductCreateDto(
 
         @Size(max=1000, message = "Size of description should be less than 1000 symbols")
         String description,
+
+        UUID categoryId,
+
+        @Positive(message = "Price should be more than 0")
+        @NotNull(message = "Price can not be empty!")
+        Integer stockQuantity,
 
         @NotNull(message = "Price can not be empty!")
         @Positive(message = "Price should be more than 0")
