@@ -40,7 +40,7 @@ public class UserController {
         authService.register(dto);
     }
 
-    @PutMapping("/{userId}")
+    @PatchMapping("/{userId}")
     @PreAuthorize("hasRole('ADMIN') or @userService.isOwner(#userId, authentication.name)")
     public UserResponseDto updateUser(@Valid @RequestBody UserUpdateDto dto, @PathVariable Long userId) {
         return userService.updateUser(dto, userId);
