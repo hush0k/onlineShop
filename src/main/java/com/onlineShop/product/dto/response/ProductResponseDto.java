@@ -10,6 +10,7 @@ public record ProductResponseDto(
         UUID id,
         String name ,
         String description,
+        String categoryName,
         BigDecimal price,
         BigDecimal weight,
         WeightType weightType,
