@@ -21,3 +21,13 @@ spring:
 
   flyway:
     enabled: true
+
+  security:
+    user:
+      name: admin
+      password: admin
+
+jwt:
+  secret: ${JWT_SECRET}
+  access-ttl: ${ACCESS_TOKEN_TTL:60m}
+  refresh-ttl: ${REFRESH_TOKEN_TTL:30d}
