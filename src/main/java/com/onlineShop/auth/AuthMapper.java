@@ -7,6 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface AuthMapper {
+    @Mapping(target = "email", source = "email")
     @Mapping(target = "hashedPassword", source = "hashedPassword")
-    UserCreateDto toUserCreateDto(RegisterRequestDto dto, String hashedPassword);
+    UserCreateDto toUserCreateDto(RegisterRequestDto dto, String email, String hashedPassword);
 }

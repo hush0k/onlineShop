@@ -1,6 +1,5 @@
 package com.onlineShop.auth;
 
-import com.onlineShop.common.config.JwtProperties;
 import com.onlineShop.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +14,6 @@ import java.time.Instant;
 @Setter
 @Getter
 @Builder
-@RequiredArgsConstructor
 public class RefreshToken {
 
     @Id
@@ -36,9 +34,6 @@ public class RefreshToken {
 
     @Column(name = "expires_at", nullable = false)
     private Instant expiresAt;
-
-    @Column(name = "revoked", nullable = false)
-    private boolean revoked;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
