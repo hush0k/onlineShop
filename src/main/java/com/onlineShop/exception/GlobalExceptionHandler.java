@@ -3,6 +3,7 @@ package com.onlineShop.exception;
 import com.onlineShop.exception.auth.HandleInvalidCredentials;
 import com.onlineShop.exception.auth.HandleInvalidRefreshToken;
 import com.onlineShop.exception.auth.HandleUserAlreadyExists;
+import com.onlineShop.exception.product.HandleProductNotFound;
 import com.onlineShop.exception.user.HandleInvalidOldPassword;
 import com.onlineShop.exception.user.HandleUserNotFound;
 import com.onlineShop.exception.user.HandleUserNotFoundByEmail;
@@ -114,6 +115,20 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+    }
+
+    @ExceptionHandler(HandleProductNotFound.class)
+    public ResponseEntity<ErrorResponse> handleProductNotFound(HandleProductNotFound exception,
+                                                           HttpServletRequest request) {
+        ErrorResponse error = ErrorResponse.builder()
+                .timestamp(Instant.now())
+                .error("Not found")
+                .status(404)
+                .message(exception.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
 }
