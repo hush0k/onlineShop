@@ -3,6 +3,8 @@ package com.onlineShop.exception;
 import com.onlineShop.exception.auth.HandleInvalidCredentials;
 import com.onlineShop.exception.auth.HandleInvalidRefreshToken;
 import com.onlineShop.exception.auth.HandleUserAlreadyExists;
+import com.onlineShop.exception.category.HandleCategoryAlreadyExists;
+import com.onlineShop.exception.category.HandleCategoryNotFound;
 import com.onlineShop.exception.product.HandleNotEnoughProductQuantity;
 import com.onlineShop.exception.product.HandleProductNotFound;
 import com.onlineShop.exception.user.HandleInvalidOldPassword;
@@ -144,6 +146,34 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(HandleCategoryNotFound.class)
+    public ResponseEntity<ErrorResponse> handleCategoryNotFound(HandleCategoryNotFound exception,
+                                                                HttpServletRequest request) {
+        ErrorResponse error = ErrorResponse.builder()
+                .timestamp(Instant.now())
+                .error("Not found")
+                .status(404)
+                .message(exception.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(HandleCategoryAlreadyExists.class)
+    public ResponseEntity<ErrorResponse> handleCategoryAlreadyExists(HandleCategoryAlreadyExists exception,
+                                                                     HttpServletRequest request) {
+        ErrorResponse error = ErrorResponse.builder()
+                .timestamp(Instant.now())
+                .status(409)
+                .error("Conflict")
+                .message(exception.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
 }
