@@ -27,6 +27,12 @@ spring:
       name: admin
       password: admin
 
+  data:
+    web:
+      pageable:
+        max-page-size: 20
+        default-page-size: 20
+
 jwt:
   secret: ${JWT_SECRET}
   access-ttl: ${ACCESS_TOKEN_TTL:60m}
