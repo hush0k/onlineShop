@@ -1,4 +1,4 @@
-package com.onlineShop.product;
+package com.onlineShop.product.Product;
 
 public enum WeightType {
     MILLIGRAM,

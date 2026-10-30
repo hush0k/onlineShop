@@ -1,9 +1,9 @@
-package com.onlineShop.product;
+package com.onlineShop.product.Product;
 
-import com.onlineShop.product.dto.request.ProductCreateDto;
-import com.onlineShop.product.dto.request.ProductFilter;
-import com.onlineShop.product.dto.request.ProductUpdateDto;
-import com.onlineShop.product.dto.response.ProductResponseDto;
+import com.onlineShop.product.Product.dto.request.ProductCreateDto;
+import com.onlineShop.product.Product.dto.request.ProductFilter;
+import com.onlineShop.product.Product.dto.request.ProductUpdateDto;
+import com.onlineShop.product.Product.dto.response.ProductResponseDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

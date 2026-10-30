@@ -1,5 +1,6 @@
-package com.onlineShop.product;
+package com.onlineShop.product.Product;
 
+import com.onlineShop.product.Category.Category;
 import jakarta.persistence.*;
 import lombok.*;
 

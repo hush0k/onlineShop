@@ -1,6 +1,6 @@
-package com.onlineShop.product.dto.response;
+package com.onlineShop.product.Product.dto.response;
 
-import com.onlineShop.product.WeightType;
+import com.onlineShop.product.Product.WeightType;
 
 import java.math.BigDecimal;
 import java.time.Instant;

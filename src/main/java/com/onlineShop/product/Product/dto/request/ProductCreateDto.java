@@ -1,6 +1,6 @@
-package com.onlineShop.product.dto.request;
+package com.onlineShop.product.Product.dto.request;
 
-import com.onlineShop.product.WeightType;
+import com.onlineShop.product.Product.WeightType;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;

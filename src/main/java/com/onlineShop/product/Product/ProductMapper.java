@@ -1,8 +1,8 @@
-package com.onlineShop.product;
+package com.onlineShop.product.Product;
 
-import com.onlineShop.product.dto.request.ProductCreateDto;
-import com.onlineShop.product.dto.request.ProductUpdateDto;
-import com.onlineShop.product.dto.response.ProductResponseDto;
+import com.onlineShop.product.Product.dto.request.ProductCreateDto;
+import com.onlineShop.product.Product.dto.request.ProductUpdateDto;
+import com.onlineShop.product.Product.dto.response.ProductResponseDto;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

@@ -1,11 +1,11 @@
-package com.onlineShop.product;
+package com.onlineShop.product.Product;
 
 import com.onlineShop.exception.product.HandleNotEnoughProductQuantity;
 import com.onlineShop.exception.product.HandleProductNotFound;
-import com.onlineShop.product.dto.request.ProductCreateDto;
-import com.onlineShop.product.dto.request.ProductFilter;
-import com.onlineShop.product.dto.request.ProductUpdateDto;
-import com.onlineShop.product.dto.response.ProductResponseDto;
+import com.onlineShop.product.Product.dto.request.ProductCreateDto;
+import com.onlineShop.product.Product.dto.request.ProductFilter;
+import com.onlineShop.product.Product.dto.request.ProductUpdateDto;
+import com.onlineShop.product.Product.dto.response.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

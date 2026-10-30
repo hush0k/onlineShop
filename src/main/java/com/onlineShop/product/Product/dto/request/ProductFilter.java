@@ -1,4 +1,4 @@
-package com.onlineShop.product.dto.request;
+package com.onlineShop.product.Product.dto.request;
 
 import java.math.BigDecimal;
 import java.util.UUID;
