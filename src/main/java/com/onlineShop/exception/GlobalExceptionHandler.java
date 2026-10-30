@@ -3,6 +3,7 @@ package com.onlineShop.exception;
 import com.onlineShop.exception.auth.HandleInvalidCredentials;
 import com.onlineShop.exception.auth.HandleInvalidRefreshToken;
 import com.onlineShop.exception.auth.HandleUserAlreadyExists;
+import com.onlineShop.exception.product.HandleNotEnoughProductQuantity;
 import com.onlineShop.exception.product.HandleProductNotFound;
 import com.onlineShop.exception.user.HandleInvalidOldPassword;
 import com.onlineShop.exception.user.HandleUserNotFound;
@@ -129,6 +130,20 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(HandleNotEnoughProductQuantity.class)
+    public ResponseEntity<ErrorResponse> handleNotEnoughProductQuantity(HandleNotEnoughProductQuantity exception,
+                                                               HttpServletRequest request) {
+        ErrorResponse error = ErrorResponse.builder()
+                .timestamp(Instant.now())
+                .error("Bad request")
+                .status(400)
+                .message(exception.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
 }
