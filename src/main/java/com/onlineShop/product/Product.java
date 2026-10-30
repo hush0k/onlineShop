@@ -1,5 +1,6 @@
 package com.onlineShop.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,10 @@ public class Product {
 
     @Column(name="description")
     private String description;
+
+    @JoinColumn(name = "category_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     @Column(name="price")
     private BigDecimal price;
