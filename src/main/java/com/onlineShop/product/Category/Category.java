@@ -1,4 +1,4 @@
-package com.onlineShop.product;
+package com.onlineShop.product.Category;
 
 import jakarta.persistence.*;
 import lombok.*;
