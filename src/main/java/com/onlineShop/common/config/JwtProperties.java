@@ -10,7 +10,7 @@ import java.time.Duration;
 @ConfigurationProperties(prefix = "jwt")
 @Validated
 public record JwtProperties (
-        @NotBlank String jwtToken,
+        @NotBlank String secret,
         @NotNull Duration accessTtl,
         @NotNull Duration refreshTtl
         )
