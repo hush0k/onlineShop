@@ -2,7 +2,6 @@ package com.onlineShop.exception;
 
 import com.onlineShop.exception.auth.HandleInvalidCredentials;
 import com.onlineShop.exception.auth.HandleInvalidRefreshToken;
-import com.onlineShop.exception.auth.HandleUnauthorized;
 import com.onlineShop.exception.auth.HandleUserAlreadyExists;
 import com.onlineShop.exception.user.HandleUserNotFound;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,20 +59,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HandleInvalidRefreshToken.class)
     public ResponseEntity<ErrorResponse> handleInvalidRefreshToken(HandleInvalidRefreshToken exception,
                                                                    HttpServletRequest request){
-        ErrorResponse error = ErrorResponse.builder()
-                .timestamp(Instant.now())
-                .status(401)
-                .error("Unauthorized")
-                .message(exception.getMessage())
-                .path(request.getRequestURI())
-                .build();
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
-    }
-
-    @ExceptionHandler(HandleUnauthorized.class)
-    public ResponseEntity<ErrorResponse> handleUnauthorized(HandleUnauthorized exception,
-                                                            HttpServletRequest request){
         ErrorResponse error = ErrorResponse.builder()
                 .timestamp(Instant.now())
                 .status(401)
