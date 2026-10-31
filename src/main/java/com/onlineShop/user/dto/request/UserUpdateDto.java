@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 public record UserUpdateDto(
+        @NotBlank(message = "Nickname can not be empty!")
         @Email
         @Size(min=3, max=100)
         String email,
