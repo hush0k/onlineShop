@@ -7,7 +7,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Table(name="order-histories")
+@Table(name="order_histories")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +19,7 @@ public class OrderHistory {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order-history-seq")
     @SequenceGenerator(
             name = "order-history-seq",
-            sequenceName = "order-history-seq-gen",
+            sequenceName = "order_histories_seq",
             allocationSize = 50
     )
     private Long id;
