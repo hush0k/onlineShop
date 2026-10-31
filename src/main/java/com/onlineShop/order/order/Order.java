@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name="order")
+@Table(name="orders")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order-seq")
     @SequenceGenerator(
             name = "order-seq",
-            sequenceName = "order-seq-gen",
+            sequenceName = "orders_seq",
             allocationSize = 50
     )
     private Long id;
@@ -40,7 +40,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @Column(name="subPrice")
+    @Column(name="sub_price")
     private BigDecimal subPrice;
 
     @Column(name="delivery_price")
