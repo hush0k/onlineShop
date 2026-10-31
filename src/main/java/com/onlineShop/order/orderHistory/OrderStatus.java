@@ -1,5 +1,7 @@
 package com.onlineShop.order.orderHistory;
 
+import com.onlineShop.exception.order.HandleOrderAlreadyCompleted;
+
 import java.util.List;
 
 public enum OrderStatus {
@@ -17,6 +19,18 @@ public enum OrderStatus {
     OrderStatus(Integer sequenceNumber, List<Integer> possibleNextStep) {
         this.sequenceNumber = sequenceNumber;
         this.possibleNextStep = possibleNextStep;
+    }
+
+    public OrderStatus getNextStep(OrderStatus status) {
+        Integer nextStep = possibleNextStep.get(sequenceNumber + 1);
+        if (nextStep == null || nextStep >= 9) {
+            throw new HandleOrderAlreadyCompleted(this);
+        }
+        return Enum.valueOf(OrderStatus.class, nextStep.toString());
+    }
+
+    public boolean canTransitionTo(OrderStatus next) {
+        return possibleNextStep.contains(next.sequenceNumber);
     }
 
     private Integer sequenceNumber;
